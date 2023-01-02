@@ -1,7 +1,7 @@
 # ticket-bus-api
 API Rest para reservar passagens de Ônibus.
 
-Responsável por expor endpoints para que o usuário consiga em um front-end:
+Permite que o usuário consiga, através de um app mobile:
 
 * Definir a Origem e o Destino
 
