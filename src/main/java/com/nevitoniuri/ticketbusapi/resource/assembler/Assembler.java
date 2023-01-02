@@ -1,4 +1,4 @@
-package com.nevitoniuri.ticketbusapi.service.assembler;
+package com.nevitoniuri.ticketbusapi.resource.assembler;
 
 import org.springframework.data.domain.Page;
 
