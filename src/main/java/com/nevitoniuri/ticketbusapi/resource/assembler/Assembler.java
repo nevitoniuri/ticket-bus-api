@@ -1,15 +1,9 @@
 package com.nevitoniuri.ticketbusapi.resource.assembler;
 
-import org.springframework.data.domain.Page;
+public interface Assembler<E, I, R> {
 
-public interface Assembler <E, I, U, D> {
+    E toEntity(I request);
 
-    E toEntity(I input);
-
-    void updateEntity(U update, E entity);
-
-    D toDTO(E entity);
-
-    Page<D> toDTO(Page<E> entities);
+    R toResponse(E entity);
 
 }
