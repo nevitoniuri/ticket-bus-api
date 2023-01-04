@@ -1,19 +1,20 @@
 version: '3.8'
 services:
-  API:
+  ticket-bus-api:
+    container_name: ticket-bus-api
     image: 'ticket-bus-api.jar'
     ports:
       - "8080:8080"
     depends_on:
-      postgres:
+      ticket-bus-db:
         condition: service_healthy
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgreSQL:5432/ticket-bus-db
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
 
-  postgres:
-    container_name: postgres
+  ticket-bus-db:
+    container_name: ticket-bus-db
     image: postgres
     ports:
       - "5432:5432"
@@ -28,7 +29,7 @@ services:
       retries: 5
     restart: on-failure
     volumes:
-      - PostgreSQL-data:/var/lib/postgresql/data
+      - ticket-bus-db-data:/var/lib/postgresql/data
 
 volumes:
-  PostgreSQL-data:
+  ticket-bus-db-data:

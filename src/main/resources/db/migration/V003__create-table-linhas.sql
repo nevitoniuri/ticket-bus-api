@@ -1,20 +1,16 @@
-create table linhas
+CREATE TABLE linhas
 (
-    id                    bigint      not null,
-    codigo                varchar(8)  not null,
-    status                varchar(20) not null,
-    rodoviaria_origem_id  bigint      not null,
-    rodoviaria_destino_id bigint      not null,
-    data_hora_saida       timestamp   not null,
-    duracao_viagem        integer,
-    data_hora_cadastro    timestamp   not null,
-    data_hora_alteracao   timestamp,
+    id                    BIGSERIAL      NOT NULL PRIMARY KEY,
+    codigo                VARCHAR(8)     NOT NULL UNIQUE,
+    status                VARCHAR(20)    NOT NULL,
+    rodoviaria_origem_id  BIGINT         NOT NULL,
+    rodoviaria_destino_id BIGINT         NOT NULL,
+    data_hora_saida       TIMESTAMP      NOT NULL,
+    valor                 DECIMAL(10, 2) NOT NULL,
+    duracao_viagem        INTEGER,
+    data_hora_cadastro    TIMESTAMP      NOT NULL,
+    data_hora_alteracao   TIMESTAMP,
 
-    constraint linhas_pk primary key (id),
-    constraint linhas_unique_codigo unique (codigo)
+    FOREIGN KEY (rodoviaria_origem_id) REFERENCES rodoviarias (id),
+    FOREIGN KEY (rodoviaria_destino_id) REFERENCES rodoviarias (id)
 );
-
-create sequence if not exists linhas_id_seq;
-
-alter table linhas
-    alter column id set default nextval('linhas_id_seq');

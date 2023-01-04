@@ -1,14 +1,9 @@
-create table poltronas
+CREATE TABLE poltronas
 (
-    id        bigint         not null,
-    numero    varchar(5)     not null,
-    valor     decimal(10, 2) not null,
-    onibus_id bigint         not null,
+    id        BIGSERIAL  NOT NULL PRIMARY KEY,
+    numero    VARCHAR(5) NOT NULL,
+    onibus_id BIGINT     NOT NULL,
+    reservada BOOLEAN    NOT NULL DEFAULT FALSE,
 
-    constraint poltronas_pk primary key (id)
+    FOREIGN KEY (onibus_id) REFERENCES onibus (id)
 );
-
-create sequence if not exists poltronas_id_seq;
-
-alter table poltronas
-    alter column id set default nextval('poltronas_id_seq');

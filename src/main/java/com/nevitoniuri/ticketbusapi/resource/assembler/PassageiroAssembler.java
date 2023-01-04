@@ -1,6 +1,6 @@
 package com.nevitoniuri.ticketbusapi.resource.assembler;
 
-import com.nevitoniuri.ticketbusapi.common.Utils;
+import com.nevitoniuri.ticketbusapi.common.DateUtil;
 import com.nevitoniuri.ticketbusapi.domain.model.Passageiro;
 import com.nevitoniuri.ticketbusapi.resource.request.PassageiroCreate;
 import com.nevitoniuri.ticketbusapi.resource.response.PassageiroResponse;
@@ -17,7 +17,7 @@ public class PassageiroAssembler implements Assembler<Passageiro, PassageiroCrea
                 .cpf(request.cpf())
                 .email(request.email())
                 .telefone(request.telefone())
-                .dataNascimento(Utils.handleDataNascimento(request.dataNascimento()))
+                .dataNascimento(DateUtil.handleData(request.dataNascimento()))
                 .sexo(request.sexo())
                 .dataCadastro(LocalDateTime.now())
                 .endereco(request.endereco())

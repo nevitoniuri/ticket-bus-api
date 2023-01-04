@@ -1,23 +1,19 @@
-create table bilhetes
+CREATE TABLE bilhetes
 (
-    id                     bigint         not null,
-    codigo                 varchar(8)     not null,
-    linha_id               bigint         not null,
-    status                 varchar(20)    not null,
-    passageiro_id          bigint         not null,
-    poltrona_id            bigint         not null,
-    data_hora_viagem       timestamp      not null,
-    taxa_embarque          decimal(10, 2),
-    desconto               decimal(10, 2),
-    valor_total            decimal(10, 2) not null,
-    data_hora_compra       timestamp      not null,
-    data_hora_cancelamento timestamp,
+    id                     BIGSERIAL      NOT NULL PRIMARY KEY,
+    codigo                 VARCHAR(8)     NOT NULL UNIQUE,
+    linha_id               BIGINT         NOT NULL,
+    status                 VARCHAR(20)    NOT NULL,
+    passageiro_id          BIGINT         NOT NULL,
+    poltrona_id            BIGINT         NOT NULL,
+    data_hora_viagem       TIMESTAMP      NOT NULL,
+    taxa_embarque          DECIMAL(10, 2),
+    desconto               DECIMAL(10, 2),
+    valor_total            DECIMAL(10, 2) NOT NULL,
+    data_hora_compra       TIMESTAMP      NOT NULL,
+    data_hora_cancelamento TIMESTAMP,
 
-    constraint bilhetes_pk primary key (id),
-    constraint bilhetes_unique_codigo unique (codigo)
+    FOREIGN KEY (linha_id) REFERENCES linhas (id),
+    FOREIGN KEY (passageiro_id) REFERENCES passageiros (id),
+    FOREIGN KEY (poltrona_id) REFERENCES poltronas (id)
 );
-
-create sequence if not exists bilhetes_id_seq;
-
-alter table bilhetes
-    alter column id set default nextval('bilhetes_id_seq');

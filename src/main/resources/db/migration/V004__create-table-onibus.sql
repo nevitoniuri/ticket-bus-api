@@ -1,19 +1,13 @@
-create table onibus
+CREATE TABLE onibus
 (
-    id                  bigint       not null,
-    placa               varchar(8)   not null,
-    modelo              varchar(100) not null,
-    ano_fabricacao      integer      not null,
-    status              varchar(20)  not null,
-    linha_id            bigint       not null,
-    data_hora_cadastro  timestamp    not null,
-    data_hora_alteracao timestamp,
+    id                  BIGSERIAL    NOT NULL PRIMARY KEY,
+    placa               VARCHAR(8)   NOT NULL UNIQUE,
+    modelo              VARCHAR(100) NOT NULL,
+    ano_fabricacao      INTEGER      NOT NULL,
+    status              VARCHAR(20)  NOT NULL,
+    linha_id            BIGINT       NOT NULL,
+    data_hora_cadastro  TIMESTAMP    NOT NULL,
+    data_hora_alteracao TIMESTAMP,
 
-    constraint onibus_pk primary key (id),
-    constraint onibus_unique_placa unique (placa)
+    FOREIGN KEY (linha_id) REFERENCES linhas (id)
 );
-
-create sequence if not exists onibus_id_seq;
-
-alter table onibus
-    alter column id set default nextval('onibus_id_seq');

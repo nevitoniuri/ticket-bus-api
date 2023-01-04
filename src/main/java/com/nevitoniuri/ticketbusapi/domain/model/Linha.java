@@ -4,6 +4,7 @@ import com.nevitoniuri.ticketbusapi.domain.enums.StatusLinha;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -39,6 +40,9 @@ public class Linha {
 
     @Column(name = "data_hora_saida", nullable = false)
     private LocalDateTime dataHoraSaida;
+
+    @Column(name = "valor", nullable = false)
+    private BigDecimal valor;
 
     @Column(name = "duracao_viagem")
     private Integer duracaoViagem;

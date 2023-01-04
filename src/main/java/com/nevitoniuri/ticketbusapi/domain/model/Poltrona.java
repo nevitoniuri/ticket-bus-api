@@ -3,8 +3,6 @@ package com.nevitoniuri.ticketbusapi.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,7 +10,7 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 @Table(name = "poltronas")
-@EqualsAndHashCode(of = "numeroPoltrona", callSuper = false)
+@EqualsAndHashCode(of = "id")
 public class Poltrona implements Comparable<Poltrona> {
 
     @Id
@@ -23,13 +21,11 @@ public class Poltrona implements Comparable<Poltrona> {
     @Column(name = "numero", nullable = false, unique = true)
     private String numero;
 
-    @Column(name = "valor", nullable = false)
-    private BigDecimal valor;
-
     @ManyToOne
     @JoinColumn(name = "onibus_id", nullable = false)
     private Onibus onibus;
 
+    @Column(name = "reservada", nullable = false)
     private boolean reservada = false;
 
     @Override

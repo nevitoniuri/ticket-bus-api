@@ -1,29 +1,19 @@
-create table passageiros
+CREATE TABLE passageiros
 (
-    id              bigint       not null,
-    nome            varchar(100) not null,
-    cpf             varchar(11)  not null,
-    email           varchar(100) not null,
-    telefone        varchar(11)  not null,
-    data_nascimento timestamp    not null,
-    sexo            varchar(1),
-    data_cadastro   timestamp    not null,
-    data_alteracao  timestamp,
-    logradouro      varchar(100) not null,
-    numero          varchar(20)  not null,
-    complemento     varchar(100),
-    bairro          varchar(100) not null,
-    cidade          varchar(100) not null,
-    uf              varchar(2)   not null,
-    cep             varchar(8)   not null,
-
-    constraint passageiros_pk primary key (id),
-    constraint passageiros_unique_cpf unique (cpf),
-    constraint passageiros_unique_email unique (email),
-    constraint passageiros_unique_telefone unique (telefone)
+    id              BIGSERIAL    NOT NULL PRIMARY KEY,
+    nome            VARCHAR(100) NOT NULL,
+    cpf             VARCHAR(11)  NOT NULL UNIQUE,
+    email           VARCHAR(100) NOT NULL UNIQUE,
+    telefone        VARCHAR(11)  NOT NULL UNIQUE,
+    data_nascimento TIMESTAMP    NOT NULL,
+    sexo            VARCHAR(1),
+    data_cadastro   TIMESTAMP    NOT NULL,
+    data_alteracao  TIMESTAMP,
+    logradouro      VARCHAR(100) NOT NULL,
+    numero          VARCHAR(20)  NOT NULL,
+    complemento     VARCHAR(100),
+    bairro          VARCHAR(100) NOT NULL,
+    cidade          VARCHAR(100) NOT NULL,
+    uf              VARCHAR(2)   NOT NULL,
+    cep             VARCHAR(8)   NOT NULL
 );
-
-create sequence if not exists passageiros_id_seq;
-
-alter table passageiros
-    alter column id set default nextval('passageiros_id_seq');
